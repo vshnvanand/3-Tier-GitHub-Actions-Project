@@ -18,7 +18,7 @@ metadata:
   labels:
     app: backend
 data:
-  DB_HOST: mysql
+  DB_HOST: mysql-svc
   DB_USER: root
   DB_NAME: crud_app
   RESET_ADMIN_PASS: "true"
