@@ -78,9 +78,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-svc
-  namespace: prod
+  name: backend
 spec:
+  type: LoadBalancer
   selector:
     app: backend
   ports:
