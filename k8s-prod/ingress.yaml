@@ -13,15 +13,15 @@ spec:
     - host: adityajaiswal.com
       http:
         paths:
-          - path: /api(/|$)(.*)
-            pathType: ImplementationSpecific
+          - path: /api
+            pathType: Prefix
             backend:
               service:
                 name: backend-svc
                 port:
                   number: 5000
           - path: /
-            pathType: ImplementationSpecific
+            pathType: Prefix
             backend:
               service:
                 name: frontend-svc
@@ -30,15 +30,15 @@ spec:
     - host: www.adityajaiswal.com
       http:
         paths:
-          - path: /api(/|$)(.*)
-            pathType: ImplementationSpecific
+          - path: /api
+            pathType: Prefix
             backend:
               service:
                 name: backend-svc
                 port:
                   number: 5000
           - path: /
-            pathType: ImplementationSpecific
+            pathType: Prefix
             backend:
               service:
                 name: frontend-svc
