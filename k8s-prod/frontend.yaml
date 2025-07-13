@@ -1,8 +1,11 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
   namespace: prod
+  labels:
+    app: frontend
 spec:
   replicas: 3
   selector:
@@ -30,3 +33,4 @@ spec:
   ports:
     - port: 80
       targetPort: 80
+  type: ClusterIP
