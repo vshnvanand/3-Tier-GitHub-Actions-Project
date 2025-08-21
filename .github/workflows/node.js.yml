@@ -8,14 +8,14 @@ on:
 
 jobs:
   compile:
-    runs-on: Agent-1
+    runs-on: agent-1
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '23'   # adjust version as per your Jenkins setup
 
