@@ -30,7 +30,7 @@ jobs:
           find . -name "*.js" -exec node --check {} +
 
   gitleaks-scan:
-    runs-on: Agent-1
+    runs-on: agent-1
     needs: compile
     steps:
       - name: Checkout code
@@ -45,11 +45,11 @@ jobs:
           gitleaks detect --source ./api --exit-code 1
 
   trivy_fs_scan:
-    runs-on: Agent-1
+    runs-on: agent-1
     needs: gitleaks-scan
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.28.0
         with:
@@ -61,7 +61,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
 
   sonar-frontend:
-    runs-on: Agent-1
+    runs-on: agent-1
     needs: trivy_fs_scan
     steps:
       - name: Checkout code
@@ -81,7 +81,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
   sonar-backend:
-    runs-on: Agent-1
+    runs-on: agent-1
     needs: sonar-frontend
     steps:
       - name: Checkout code
@@ -149,7 +149,7 @@ jobs:
           file: ./client/Dockerfile
 
   trivy_image_scan:
-    runs-on: Agent-1
+    runs-on: agent-1
     needs: build_frontend_docker_image_and_push   # or whatever job built/pushed your image
     steps:
       - name: Checkout code
@@ -178,7 +178,7 @@ jobs:
           severity: CRITICAL,HIGH
 
   deploy_to_kubernetes:
-    runs-on: Agent-1
+    runs-on: agent-1
     needs: trivy_image_scan
     steps:
     - name: Checkout Code
